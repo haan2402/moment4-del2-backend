@@ -4,8 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-sida</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="checkAuth.js"></script>
+    <script src="main.js" defer></script>
 </head>
 <body>
+    <!--header and nav for page-->
+    <header>
+        <h1>Moment 4</h1>
+        <nav>
+            <ul>
+            <li><a href="index.html">Start</a></li>
+            <li><a href="register.html">Registrera</a></li>
+            <li><a href="admin.html">Admin</a></li>
+            <li><button id="logout-btn" class="logout-btn">Logga ut</button></li>
+        </ul>
+        </nav>
+    </header>
+
+    <!--main container-->
+    <main class="admin-container">
+        <h2>Admin</h2>
+        <div id="protected"></div>
+    </main>
     
 </body>
 </html>
