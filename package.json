@@ -1,7 +1,7 @@
 {
   "name": "moment4-del2-backend",
   "version": "1.0.0",
-  "source": "src/index.html",
+  "source": "index.html",
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
