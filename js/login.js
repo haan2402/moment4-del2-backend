@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //logga in användare
 async function loginUsers() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const loginUsername = document.getElementById('login-username').value;
+    const loginPassword = document.getElementById('login-password').value;
 
     const message = document.getElementById("message");
     
         //kontroll att alla fält måste vara ifylld, returnerar ett meddelande annars
-        if(!username || !password) {
+        if(!loginUsername || !loginPassword) {
             message.textContent = "Alla fält måste vara ifyllda!";
             message.style.color = 'red';
             return;
@@ -32,14 +32,14 @@ async function loginUsers() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({username, password})
+                body: JSON.stringify({username: loginUsername, password: loginPassword})
             });
     
             const userData = await response.json(); 
 
             //om inloggning ok - skickas till admin-sidan
             if(response.ok) {
-                sessionStorage.setItem("token", userData.response.token);
+                localStorage.setItem("token", userData.token);
 
                 window.location.href = "admin.html";
                 
