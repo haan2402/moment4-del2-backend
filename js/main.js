@@ -5,12 +5,13 @@ const menu = document.getElementById("menu");
 //hanterar formulär för nya användare
 document.addEventListener('DOMContentLoaded', () => {
     getMenu();
+    getUsers();
 
     const form = document.getElementById('register-form');
     if(form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            await getUsers();
+            await registerUsers();
         });
     }
 });
@@ -43,12 +44,10 @@ function getMenu() {
         <li><a href="login.html">Logga in</a></li>
         `;
     }
-
-
 }
 
 //funktionen lägger till ny användare
-async function getUsers() {
+async function registerUsers() {
     //variabler för input-fälten
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -83,4 +82,46 @@ async function getUsers() {
         console.error("Något gick fel - försök igen", error);
     }
 
+}
+
+//funktion för att hämta registrerade användare
+async function getUsers() {
+    //meddelande som visar att man inte är inloggad i konsollen
+    const token = localStorage.getItem("token");
+    if(!token) {
+        console.error("Användaren är inte inloggad");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/api/users", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        });
+
+        const data = await response.json();
+        writeUsers(data.users);
+
+    } catch(error) {
+        console.error("Något gick fel - försök igen", error);
+    }
+}
+
+//funktion för att skriva ut de registrerade användarna på admin sidan
+function writeUsers(users) {
+    const userContainer = document.getElementById("protected");
+
+    if(!userContainer) return;
+
+    users.forEach(user => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+        ${user.fullname}, ${user.username} - ${user.email};
+        `;
+    
+        userContainer.appendChild(li);
+    });
 }

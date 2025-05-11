@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-sida</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="./js/checkAuth.js"></script>
-    <script src="./js/main.js" defer></script>
 </head>
 <body>
     <!--header and nav for page-->
@@ -25,13 +23,16 @@
     <!--main container-->
     <main class="admin-container">
         <h2>Admin</h2>
-        <div id="protected">
-            <p>Du är inloggad som <strong>Admin</strong></p>
-        </div>
+    <section>
+        <ul id="protected">
+        </ul>
+    </section>
     </main>
     
     <footer>
         <p>Av: Hanna Angeria</p>
     </footer>
+    <script src="./js/checkAuth.js"></script>
+    <script src="./js/main.js" defer></script>
 </body>
 </html>

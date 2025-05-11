@@ -39,7 +39,8 @@ async function loginUsers() {
 
             //om inloggning ok - skickas till admin-sidan
             if(response.ok) {
-                localStorage.setItem("token", userData.token);
+                console.log(userData);
+                localStorage.setItem("token", userData.response.token);
 
                 window.location.href = "admin.html";
                 
