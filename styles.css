@@ -69,6 +69,15 @@ main {
     align-items: center;
 }
 
+.start-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.start-container p {
+    max-width: 30em;
+}
+
 h2 {
     font-size: 1.2em;
     margin-bottom: 2em;
@@ -121,4 +130,24 @@ footer {
     min-height: 15vh;
     color: white;
     font-weight: bold;
+}
+
+.admin-container { 
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-container p {
+    margin-bottom: 10px;
+}
+
+.admin-container li {
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }

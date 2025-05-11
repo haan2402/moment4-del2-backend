@@ -119,7 +119,8 @@ function writeUsers(users) {
     users.forEach(user => {
         const li = document.createElement('li');
         li.innerHTML = `
-        ${user.fullname}, ${user.username} - ${user.email};
+        <p><strong>Användare: </strong>${user.username}</p>
+        <p><strong>Email: </strong>${user.email}</p>
         `;
     
         userContainer.appendChild(li);
