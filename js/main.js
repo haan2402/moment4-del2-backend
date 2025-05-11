@@ -1,7 +1,10 @@
 "use strict";
 
+const menu = document.getElementById("menu");
+
 //hanterar formulär för nya användare
 document.addEventListener('DOMContentLoaded', () => {
+    getMenu();
 
     const form = document.getElementById('register-form');
     if(form) {
@@ -11,6 +14,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+//för att ändra menyn om man är inloggad eller inte
+function getMenu() {
+    if(!menu) return;
+
+    if(localStorage.getItem("token")) {
+        //denna meny visas om en admin är inloggad
+        menu.innerHTML = `
+        <li><a href="index.html">Start</a></li>
+        <li><a href="register.html">Registrera</a></li>
+        <li><a href="admin.html">Admin</a></li>
+        <li><button id="logout-btn" class="logout-btn">Logga ut</button></li>
+        `;
+
+        const logoutButton = document.getElementById("logout-btn");
+        if(logoutButton) {
+            logoutButton.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.href = "login.html";
+            });
+        }
+    } else {
+        //denna visas om admin inte är inloggad
+        menu.innerHTML = `
+        <li><a href="index.html">Start</a></li>
+        <li><a href="register.html">Registrera</a></li>
+        <li><a href="login.html">Logga in</a></li>
+        `;
+    }
+
+
+}
 
 //funktionen lägger till ny användare
 async function getUsers() {
@@ -47,4 +82,5 @@ async function getUsers() {
     } catch(error) {
         console.error("Något gick fel - försök igen", error);
     }
+
 }

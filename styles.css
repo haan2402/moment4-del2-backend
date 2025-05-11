@@ -39,6 +39,7 @@ nav ul {
     background-color: #646464;
     border: none;
     font-size: 1em;
+    cursor: pointer;
 }
 
 nav a,
